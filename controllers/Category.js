@@ -10,8 +10,8 @@ const category = require('../models/category');
     });
 };*/
 const categoryName = async (req,res) => {
-    const cat = await category.getCategory();
-    return res.render('admin/category',{cat:cat});
+    const categories = await category.getCategory();
+    return res.render('admin/category',{categories:categories});
 };
 
 

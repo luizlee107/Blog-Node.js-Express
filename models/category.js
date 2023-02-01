@@ -3,9 +3,11 @@ const connection = require('./connection');
 
 
 const getCategory = async () => {
-    const [name] = await connection.execute('SELECT * FROM categories');
-    return name;
+    const [categories] = await connection.execute('SELECT * FROM categories');
+    return categories;
 };
+
+
 
 
 module.exports = {
