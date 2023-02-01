@@ -6,11 +6,11 @@ const  Category  = require('../controllers/Category');
 const  Post  = require('../controllers/Post');
 
 
-router.get('/category',Category.categoryName);
+router.get('/category',Category.getCategory);
 
-router.get('/post',Post.publishPost);
+router.get('/post',Post.getPosts);
 
-
+router.post('/addpost',Post.createPost);
 
 
 
