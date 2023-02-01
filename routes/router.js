@@ -2,11 +2,13 @@ const express = require('express');
 const app = require('../src/app');
 const render = require('../src/app');
 const router = express.Router();
+const  Category  = require('../controllers/Category');
 
 
-router.get('/', (req,res) => {
-    return res.render('../views/home');
-});
+router.get('/category',Category.categoryName);
+
+
+
 
 
 
