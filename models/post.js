@@ -10,11 +10,11 @@ const getposts = async () => {
 
 
 const createPosts = async (post) => {
-    const { id } = post;
-    const { category } = post;
-    const { title } = post;
-    const { content } = post;
-    const { author } = post;
+    const { id } = post || null;
+    const { category } = post || null;
+    const { title } = post || null;
+    const { content } = post || null;
+    const { author } = post || null;
     const dateUTC = new Date(Date.now()).toUTCString(); 
     const dateUTC2 = new Date(Date.now()).toUTCString();
 

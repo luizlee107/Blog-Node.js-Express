@@ -1,15 +1,38 @@
- 
+<h1>shaop</h1>
+
+{{#each posts}}
+
+
+<h1>{{title}}</h1>
+
+<h1>{{content}}</h1>
+
 <h3>Nova post: </h3>
 <div class="card">
   <div class="card-body">
-    <form action="/admin/categoria/nova" method="post">
+    <form action="/admin/post/new" method="post">
         <div class="mb-3">
-            <label for="title">title</label>
+            <label for="category">Categoria</label>
+            <input type="text" class="form-control" name="category" placeholder="Categoria">
+        </div>
+         <div class="mb-3">
+            <label for="title">Title</label>
             <input type="text" class="form-control" name="title" placeholder="title">
         </div>
-
+        <div class="mb-3">
+            <label for="author">Autor</label>
+            <input type="text" class="form-control" name="author" placeholder="Autor">
+        </div>
+        <div class="mb-3">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" name="id" placeholder="ID">
+        </div>
+        <div class="mb-3">
+            <label for="content">Conteúdo</label>
+            <textarea type="text" class="form-control" name="content" placeholder="Conteúdo"></textarea>
+        </div>
         <br />
-        <button type="submit" class="btn btn-success">Create new post</button>
+        <button type="submit" class="btn btn-success">Criar nova postagem</button>
     </form>
   </div>
 </div>

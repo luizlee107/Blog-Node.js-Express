@@ -2,15 +2,13 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const handlebars = exphbs.create({});
 const router = require('../routes/router');
-
+const bodyParser = require('body-parser');
 const app = express();
 
-const bodyParser = require('body-parser');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 
 
 app.use(express.json());

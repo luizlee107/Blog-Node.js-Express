@@ -8,7 +8,7 @@ const getPosts = async (req,res) => {
 
 
 const createPost = async (req,res) => {
-    const createdPost = await new post.createPosts({
+    const createdPost = await post.createPosts({
         id: req.body.id,
         title: req.body.title,
         category: req.body.category,
@@ -16,8 +16,7 @@ const createPost = async (req,res) => {
         content: req.body.content
 
     });
-    createdPost.save();
-    return res.redirect('/admin/post');
+    return res.redirect('admin/post');
 };
 
 
