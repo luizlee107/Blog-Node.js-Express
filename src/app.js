@@ -5,8 +5,16 @@ const router = require('../routes/router');
 
 const app = express();
 
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+
 app.use(express.json());
-app.use(router);
+app.use(router); 
 
 app.engine('handlebars',handlebars.engine);
 app.set('view engine','handlebars');

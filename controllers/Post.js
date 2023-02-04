@@ -8,8 +8,16 @@ const getPosts = async (req,res) => {
 
 
 const createPost = async (req,res) => {
-    const createdPost = await post.createPost(req.body);
-    return req.render('admin/addpost',{createdPost:createdPost});
+    const createdPost = await new post.createPosts({
+        id: req.body.id,
+        title: req.body.title,
+        category: req.body.category,
+        author: req.body.author,
+        content: req.body.content
+
+    });
+    createdPost.save();
+    return res.redirect('/admin/post');
 };
 
 
@@ -17,4 +25,5 @@ const createPost = async (req,res) => {
 module.exports = {
     getPosts,
     createPost,
+   
 };
