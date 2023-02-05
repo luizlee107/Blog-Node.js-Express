@@ -1,1 +1,19 @@
-<h1>Test</h1>
+<div class="container d-flex justify-content-between">
+  <div class="posts-container">
+    {{#each posts}}
+      <a href="post/{{id}}" class="card-link">
+        <div class="card my-3" style="width: 15rem; height: 15rem;">
+          <div class="card-body d-flex flex-column align-items-center justify-content-center">
+            <h2 class="card-title">{{title}}</h2>
+            <p class="card-text">{{content}}</p>
+          </div>
+        </div>
+      </a>
+    {{/each}}
+  </div>
+  <div class="btn-container">
+    <a href="/postpublish"">
+      <button class="btn btn-success my-3 ">New post</button>
+    </a>
+  </div>
+</div>

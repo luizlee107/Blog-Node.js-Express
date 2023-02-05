@@ -3,9 +3,20 @@ const post = require('../models/post');
 
 const getPosts = async (req,res) => {
     const posts = await post.getposts();
-    return res.render('admin/post', {posts:posts});
+    return res.render('./home', {posts:posts});
 };
 
+
+const postShow = async (req,res) => {
+    const { id } = req.query;
+    let posts;
+    if(id){
+        posts = await post.getposts({id: id});
+    } else {
+        posts = await post.getposts();
+    }
+    return res.render('./admin/post', {posts:posts});
+};
 
 const createPost = async (req,res) => {
     const createdPost = await post.createPosts({
@@ -16,7 +27,7 @@ const createPost = async (req,res) => {
         content: req.body.content
 
     });
-    return res.redirect('admin/post');
+    return res.render('./newpost');
 };
 
 
@@ -24,5 +35,6 @@ const createPost = async (req,res) => {
 module.exports = {
     getPosts,
     createPost,
+    postShow,
    
 };

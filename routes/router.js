@@ -9,12 +9,10 @@ const  postMiddleware  = require('../middlewares/postmiddleware');
 
 router.get('/category',Category.getCategory);
 
-router.get('/post',Post.getPosts);
+router.get('/',Post.getPosts);
+router.get('/post/:id',Post.postShow);
 
-router.get('/post/add', (req,res) => {
-    res.render('admin/addpost');
-});
-
+router.get('/postpublish',postMiddleware.validate,Post.createPost);
 router.post('/post/new',postMiddleware.validate,Post.createPost);
 
 
