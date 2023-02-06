@@ -24,7 +24,24 @@ const createPosts = async (post) => {
 
 };
 
+const deletePost = async (id) => {
+    const query = 'DELETE FROM posts WHERE id=?';
+    const [removedPost] = await connection.execute(query,[id]);
+    return removedPost;
+};
+
+
+const updatePost = async (id,post) => {
+    const { title,category,author,content } = post;
+    const query = 'UPDATE posts SET title=?, category=?, author=?, content=? WHERE id=?';
+    const [updatedPost] = await connection.execute(query,[title,category,author,content,id]);
+    return updatedPost;
+
+};
+
 module.exports = {
     getposts,
     createPosts,
+    deletePost,
+    updatePost
 };

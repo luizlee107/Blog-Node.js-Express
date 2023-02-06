@@ -12,8 +12,15 @@ router.get('/category',Category.getCategory);
 router.get('/',Post.getPosts);
 router.get('/post/:id',Post.postShow);
 
-router.get('/postpublish',postMiddleware.validate,Post.createPost);
-router.post('/post/new',postMiddleware.validate,Post.createPost);
+router.get('/newpost',Post.newPost);
+router.post('/new',postMiddleware.validate,Post.createPost);
+
+
+
+router.post('/delpost/:id',Post.deletePost);
+
+router.put('editpost/:id',Post.updatePost);
+
 
 
 
