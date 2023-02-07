@@ -1,16 +1,16 @@
-<div style="display: flex; flex-wrap: wrap;">
+<div style="display: flex; justify-content: center; flex-wrap: wrap;">
   {{#each posts}}
-    <div style="width: 30%; padding: 2%;">
+    <div style="width: 70%; padding: 2%; text-align: left;">
       <h2>{{title}}</h2>
+      <br><br><br>
       <p>{{content}}</p>
 
       <form action="/editpost/{{id}}" method="get">
         <button class="btn btn-sm btn-warning">Edit</button>
       </form>
-      <form action="/delpost/{{id}}" method="delete">
+      <form action="/delpost/{{id}}" method="post">
         <button class="btn btn-sm btn-danger">Delete</button>
       </form>
     </div>
   {{/each}}
 </div>
-
