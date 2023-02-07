@@ -45,7 +45,7 @@ const newPost = async (req,res) => {
 const deletePost = async (req,res) => {
     const { id } = req.params;
     await postModel.deletePost(id);
-    return res.redirect('/delpost/2');
+    return res.redirect('/');
 };
 
 
