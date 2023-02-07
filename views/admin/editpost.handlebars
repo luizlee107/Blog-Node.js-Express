@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="d-flex justify-content">
+    <h3 class="text-center mb-3">Edit post:</h3>
+   
+    <form action="/editpost/{{id}}" method="put" class="w-50">
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select class="form-control" name="category">
+          <option value="">Choose a category</option>
+          <option value="1">Category 1</option>
+          <option value="2">Category 2</option>
+          <option value="3">Category 3</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input type="text" class="form-control" name="author" placeholder="Author">
+      </div>
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" class="form-control" name="id" placeholder="ID">
+      </div>
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea type="text" class="form-control h-100" name="content" placeholder="Content"></textarea>
+      </div>
+      <button type="submit" class="btn btn-success w-100 mt-3">Save</button>
+    </form>
+  </div>
+</div>

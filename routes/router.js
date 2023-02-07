@@ -3,23 +3,23 @@ const app = require('../src/app');
 const render = require('../src/app');
 const router = express.Router();
 const  Category  = require('../controllers/Category');
-const  Post  = require('../controllers/Post');
+const  PostController  = require('../controllers/PostController');
 const  postMiddleware  = require('../middlewares/postmiddleware');
 
 
 router.get('/category',Category.getCategory);
 
-router.get('/',Post.getPosts);
-router.get('/post/:id',Post.postShow);
+router.get('/',PostController.getPosts);
+router.get('/post/:id',PostController.postShow);
 
-router.get('/newpost',Post.newPost);
-router.post('/new',postMiddleware.validate,Post.createPost);
+router.get('/newpost',PostController.newPost);
+router.post('/new',postMiddleware.validate,PostController.createPost);
 
 
 
-router.post('/delpost/:id',Post.deletePost);
+router.post('/delpost/:id',PostController.deletePost);
 
-router.put('editpost/:id',Post.updatePost);
+router.put('/editpost/:id',postMiddleware.validate,PostController.updatePost);
 
 
 

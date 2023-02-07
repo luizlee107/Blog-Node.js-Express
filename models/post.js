@@ -9,6 +9,13 @@ const getposts = async () => {
 };
 
 
+const filterPosts = async (id) => {
+    const query = 'SELECT * FROM posts WHERE id=?';
+    const [post] = await connection.execute(query,[id]);
+    return post;
+};
+
+
 const createPosts = async (post) => {
     const { id } = post || null;
     const { category } = post || null;
@@ -41,6 +48,7 @@ const updatePost = async (id,post) => {
 
 module.exports = {
     getposts,
+    filterPosts,
     createPosts,
     deletePost,
     updatePost

@@ -8,13 +8,8 @@ const getPosts = async (req,res) => {
 
 
 const postShow = async (req,res) => {
-    const { id } = req.query;
-    let posts;
-    if(id){
-        posts = await postModel.getposts({id: id});
-    } else {
-        posts = await postModel.getposts();
-    }
+    const { id } = req.params;
+    const posts = await postModel.filterPosts(id);
     return res.render('./admin/post', {posts:posts});
 };
 
@@ -27,18 +22,11 @@ const createPost = async (req,res) => {
         content: req.body.content
 
     });
-    return res.redirect('./new');
+    return res.redirect('/');
 };
-//do it again later
+
 const newPost = async (req,res) => {
-    const { id } = req.query;
-    let posts;
-    if(id){
-        posts = await postModel.getposts({id: id});
-    } else {
-        posts = await postModel.getposts();
-    }
-    return res.render('./admin/newpost', {posts:posts});
+    return res.render('./admin/newpost');
 };
 
 
@@ -55,8 +43,6 @@ const updatePost = async (req,res) => {
     await postModel.updatePost(id,req.body);
     return res.status(204).json();
 };
-
-
 
 
 module.exports = {

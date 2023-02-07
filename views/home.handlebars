@@ -8,9 +8,11 @@
             <h5 class="card-title text-center">{{title}}</h5>
             <p class="card-text text-center">{{content}}</p>
           </div>
+
+          <form action="/post/{{id}}">read more ...</form>
         </a>
         <div class="d-flex justify-content-between px-3 py-2">
-          <a href="post/{{id}}/edit" class="btn btn-primary">Edit</a>
+          <a href="editpost/{{id}}" class="btn btn-primary">Edit</a>
           
           <form action="/delpost/{{id}}" method="post">
             <button class="btn btn-danger">Delete</button>
