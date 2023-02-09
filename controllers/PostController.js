@@ -15,12 +15,11 @@ const postShow = async (req,res) => {
 
 const createPost = async (req,res) => {
     const createdPost = await postModel.createPosts({
-        id: req.body.id,
         title: req.body.title,
         category: req.body.category,
         author: req.body.author,
-        content: req.body.content
-
+        content: req.body.content,
+        
     });
     return res.redirect('/');
 };

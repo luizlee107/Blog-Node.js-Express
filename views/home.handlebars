@@ -7,9 +7,11 @@
           <div class="card-body">
             <h5 class="card-title text-center">{{title}}</h5>
             <p class="card-text text-center">{{content}}</p>
+            <p class="card-text text-center">{{updated_at}}</p>
+            <p>read more ...</p>
+      
           </div>
 
-          <form action="/post/{{id}}">read more ...</form>
         </a>
         <div class="d-flex justify-content-between px-3 py-2">
           <a href="/editpost/{{id}}" class="btn btn-primary">Edit</a>
@@ -24,6 +26,11 @@
   <div class="text-center my-3">
     <a href="/newpost">
       <button class="btn btn-success">New post</button>
+    </a>
+  </div>
+   <div class="text-center my-3">
+    <a href="/newcategory">
+      <button class="btn btn-success">New category</button>
     </a>
   </div>
 </div>

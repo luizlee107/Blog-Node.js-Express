@@ -2,13 +2,14 @@ const express = require('express');
 const app = require('../src/app');
 const render = require('../src/app');
 const router = express.Router();
-const  Category  = require('../controllers/Category');
+const  CategoryController  = require('../controllers/CategoryController');
 const  PostController  = require('../controllers/PostController');
 const  postMiddleware  = require('../middlewares/postmiddleware');
 
 
 //Category routers
-router.get('/category',Category.getCategory);
+router.get('/admin/category',CategoryController.getCategory);
+router.post('/admin/newcategory',CategoryController.createCategory);
 
 
 

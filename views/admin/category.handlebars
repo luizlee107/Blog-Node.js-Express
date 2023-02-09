@@ -1,6 +1,31 @@
 {{#each categories}}
 
 
-<h1>{{name}}</h1>
+<p>{{name}}</p>
+<p>{{created_at}}</p>
+<p>{{updated_at}}</p>
 
 {{/each}}
+
+  <div class="text-center my-3">
+    <a href="/newcategory">
+      <button class="btn btn-success">New category</button>
+    </a>
+  </div>
+
+<div class="container">
+  <div class="d-flex justify-content">
+    <h3 class="text-center mb-3">New Category:</h3>
+   
+    <form action="/admin/newcategory" method="POST" class="w-50">
+
+      <div class="form-group">
+        <label for="title">Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Name">
+      </div>
+     
+      </div>
+      <button type="submit" class="btn btn-success w-100 mt-3">Create a new category</button>
+    </form>
+  </div>
+</div>

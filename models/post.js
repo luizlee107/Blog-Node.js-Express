@@ -25,8 +25,8 @@ const createPosts = async (post) => {
     const dateUTC2 = new Date(Date.now()).toUTCString();
 
     const query = 'INSERT INTO posts(category,title,content,author,created_at,updated_at) VALUES(?,?,?,?,?,?)';
-    const [createdTask] = await connection.execute(query,[category,title,content,author,dateUTC,dateUTC2]);
-    return {insertId:createdTask.insertId};
+    const [createdPost] = await connection.execute(query,[category,title,content,author,dateUTC,dateUTC2]);
+    return createdPost;
 
 };
 
@@ -43,10 +43,10 @@ const updatePost = async (post) => {
     const { title } = post || null;
     const { content } = post || null;
     const { author } = post || null;
+    const updated_at = new Date(Date.now()).toUTCString(); 
 
-
-    const query = 'UPDATE posts SET title=?, category=?, author=?, content=? WHERE id=?';
-    const [updatedPost] = await connection.execute(query,[title,category,author,content,id]);
+    const query = 'UPDATE posts SET title=?, category=?, author=?, content=?, updated_at=? WHERE id=?';
+    const [updatedPost] = await connection.execute(query,[title,category,author,content,updated_at,id]);
     return updatedPost;
 
 };
