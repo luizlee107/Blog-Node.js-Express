@@ -39,7 +39,7 @@ const deletePost = async (id) => {
 
 
 const updatePost = async (id,post) => {
-    const { title,category,author,content } = post;
+    const { title,category,author,content } = post || null;
     const query = 'UPDATE posts SET title=?, category=?, author=?, content=? WHERE id=?';
     const [updatedPost] = await connection.execute(query,[title,category,author,content,id]);
     return updatedPost;

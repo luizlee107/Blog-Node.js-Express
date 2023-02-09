@@ -16,12 +16,11 @@ router.get('/newpost',PostController.newPost);
 router.post('/new',postMiddleware.validate,PostController.createPost);
 
 
-
 router.post('/delpost/:id',PostController.deletePost);
 
-router.put('/editpost/:id',postMiddleware.validate,PostController.updatePost);
+router.get('/editpost/:id',PostController.editPost);
 
-
+router.put('/edit/:id',postMiddleware.validate,PostController.updatePost);
 
 
 

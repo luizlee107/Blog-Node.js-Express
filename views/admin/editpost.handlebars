@@ -1,8 +1,16 @@
+{{#each posts}}
+
+
+<h1>{{title}}</h1>
+<h1>{{author}}</h1>
+<h1>{{content}}</h1>
+
+{{/each}}
 <div class="container">
   <div class="d-flex justify-content">
     <h3 class="text-center mb-3">Edit post:</h3>
-   
-    <form action="/editpost/{{id}}" method="put" class="w-50">
+   {{#each posts}}
+    <form action="/edit/{{id}}" method="put" class="w-50">
       <div class="form-group">
         <label for="category">Category</label>
         <select class="form-control" name="category">
@@ -14,21 +22,22 @@
       </div>
       <div class="form-group">
         <label for="title">Title</label>
-        <input type="text" class="form-control" name="title" placeholder="Title">
+        <input type="text" class="form-control" name="title" value="{{title}}" placeholder="Title">
       </div>
       <div class="form-group">
         <label for="author">Author</label>
-        <input type="text" class="form-control" name="author" placeholder="Author">
+        <input type="text" class="form-control" name="author" value="{{author}}" placeholder="Author">
       </div>
-      <div class="form-group">
-        <label for="id">ID</label>
-        <input type="text" class="form-control" name="id" placeholder="ID">
+        <label for="id">id</label>
+        <input type="text" class="form-control" name="id" value="{{id}}" >
       </div>
       <div class="form-group">
         <label for="content">Content</label>
-        <textarea type="text" class="form-control h-100" name="content" placeholder="Content"></textarea>
+        <textarea type="text" class="form-control h-100" name="content" value="{{content}}" placeholder="Content"></textarea>
       </div>
       <button type="submit" class="btn btn-success w-100 mt-3">Save</button>
     </form>
   </div>
 </div>
+
+{{/each}}

@@ -37,12 +37,24 @@ const deletePost = async (req,res) => {
 };
 
 
+const editPost = async (req,res) => {
+    const  id  = req.params.id;
+    const posts = await postModel.filterPosts(id);
+    return res.render('./admin/editpost',{posts:posts});
+
+};
 
 const updatePost = async (req,res) => {
-    const { id } = req.params;
-    await postModel.updatePost(id,req.body);
-    return res.status(204).json();
+    const { id } = req.params.id;
+    await postModel.updatePost(id,{
+        title: req.body.title,
+        category: req.body.category,
+        author: req.body.author,
+        content: req.body.content
+    });
+    return res.redirect('/');
 };
+
 
 
 module.exports = {
@@ -51,6 +63,7 @@ module.exports = {
     postShow,
     newPost,
     deletePost,
-    updatePost
+    editPost,
+    updatePost,
    
 };
