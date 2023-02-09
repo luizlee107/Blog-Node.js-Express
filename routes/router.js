@@ -7,20 +7,19 @@ const  PostController  = require('../controllers/PostController');
 const  postMiddleware  = require('../middlewares/postmiddleware');
 
 
+//Category routers
 router.get('/category',Category.getCategory);
 
+
+
+//Posts routers
 router.get('/',PostController.getPosts);
 router.get('/post/:id',PostController.postShow);
-
 router.get('/newpost',PostController.newPost);
 router.post('/new',postMiddleware.validate,PostController.createPost);
-
-
 router.post('/delpost/:id',PostController.deletePost);
-
 router.get('/editpost/:id',PostController.editPost);
-
-router.put('/edit/:id',postMiddleware.validate,PostController.updatePost);
+router.post('/edit/:id',postMiddleware.validate,PostController.updatePost);
 
 
 

@@ -46,7 +46,8 @@ const editPost = async (req,res) => {
 
 const updatePost = async (req,res) => {
     const { id } = req.params.id;
-    await postModel.updatePost(id,{
+    await postModel.updatePost({
+        id: req.body.id,
         title: req.body.title,
         category: req.body.category,
         author: req.body.author,
