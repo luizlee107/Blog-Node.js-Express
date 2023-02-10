@@ -1,20 +1,25 @@
+          {{#each categories}}
+            {{name}}
+          {{/each}}
+
 
 <div class="container">
   <div class="d-flex justify-content">
     <h3 class="text-center mb-3">Edit post:</h3>
-   {{#each posts}}
+    {{#each posts}}
     <form action="/edit/{{id}}" method="post" class="w-50">
+    {{/each}}
       <div class="form-group">
         <label for="category">Category</label>
         <select class="form-control" name="category">
-          <option value="">Choose a category</option>
-          <option value="1">Category 1</option>
-          <option value="2">Category 2</option>
-          <option value="3">Category 3</option>
+          {{#each categories}}
+          <option value="{{id}}">{{name}}</option>
+          {{/each}}
         </select>
       </div>
       <div class="form-group">
         <label for="title">Title</label>
+         {{#each posts}}
         <input type="text" class="form-control" name="title" value="{{title}}" placeholder="Title">
       </div>
       <div class="form-group">

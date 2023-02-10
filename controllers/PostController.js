@@ -1,4 +1,5 @@
 const postModel = require('../models/post');
+const categoryModel = require('../models/category');
 
 
 const getPosts = async (req,res) => {
@@ -39,8 +40,8 @@ const deletePost = async (req,res) => {
 const editPost = async (req,res) => {
     const  id  = req.params.id;
     const posts = await postModel.filterPosts(id);
-    return res.render('./admin/editpost',{posts:posts});
-
+    const categories = await categoryModel.getCategory();
+    return res.render('./admin/editpost',{posts:posts,categories:categories});
 };
 
 const updatePost = async (req,res) => {

@@ -48,8 +48,8 @@ const updatePost = async (post) => {
     const query = 'UPDATE posts SET title=?, category=?, author=?, content=?, updated_at=? WHERE id=?';
     const [updatedPost] = await connection.execute(query,[title,category,author,content,updated_at,id]);
     return updatedPost;
-
 };
+
 
 module.exports = {
     getposts,
