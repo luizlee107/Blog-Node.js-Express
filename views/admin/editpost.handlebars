@@ -1,6 +1,3 @@
-          {{#each categories}}
-            {{name}}
-          {{/each}}
 
 
 <div class="container">
@@ -10,16 +7,22 @@
     <form action="/edit/{{id}}" method="post" class="w-50">
     {{/each}}
       <div class="form-group">
+        <br><br>
         <label for="category">Category</label>
-        <select class="form-control" name="category">
-          {{#each categories}}
-          <option value="{{id}}">{{name}}</option>
-          {{/each}}
-        </select>
+        <select class="form-control" name="category" onchange="document.getElementById('categorypost').value=this.value">
+        {{#each categories}}
+          {{#if 'python'}}
+            <option selected value="{{name}}">{{name}}</option>
+          {{else}}
+            <option value="{{name}}">{{name}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
       </div>
       <div class="form-group">
         <label for="title">Title</label>
          {{#each posts}}
+          <input type="hidden" class="form-control" name="categorypost" value={{category}} placeholder="Category">
         <input type="text" class="form-control" name="title" value="{{title}}" placeholder="Title">
       </div>
       <div class="form-group">
@@ -38,3 +41,15 @@
 </div>
 
 {{/each}}
+
+
+<script>
+  document.querySelector('select[name="category"]').addEventListener('change', 
+  function {
+    document.querySelector('input[name="categorypost"]').value = this.value;
+  });
+
+
+</script>
+
+

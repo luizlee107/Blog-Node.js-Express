@@ -1,40 +1,44 @@
 {{#each categories}}
-
-<p>{{name}}</p>
-<p>Created : {{created_at}}</p>
-<p>Last updated : {{updated_at}}</p>
-
-
-      <form action="/admin/delcategory/{{id}}" method="post">
-        <button class="btn btn-sm btn-danger">Delete</button>
-      </form>
-
-      <form action="/admin/editcategory/{{id}}" method="get">
-        <button class="btn btn-sm btn-warning">Edit</button>
-      </form>
-
+<div class="category-item">
+  <p class="category-name">{{name}}</p>
+  <p>Created: {{created_at}}</p>
+  <p>Last updated: {{updated_at}}</p>
+  <div class="buttons-container">
+    <form action="/admin/delcategory/{{id}}" method="post">
+      <button class="btn btn-sm btn-danger">Delete</button>
+    </form>
+    <form action="/admin/editcategory/{{id}}" method="get">
+      <button class="btn btn-sm btn-warning">Edit</button>
+    </form>
+  </div>
+</div>
 {{/each}}
 
-  <div class="text-center my-3">
-    <a href="/newcategory">
-      <button class="btn btn-success">New category</button>
-    </a>
-  </div>
 
 
-<div class="container">
+<div class="text-center my-3">
+  <button class="btn btn-success" id="new-category">New category</button>
+</div>
+
+<div class="container" id="new-category-form">
   <div class="d-flex justify-content">
-    <h3 class="text-center mb-3">New Category:</h3>
-   
+    <h3 class="text-center mb-3">New Category</h3>
     <form action="/admin/newcategory" method="POST" class="w-50">
-
       <div class="form-group">
-        <label for="title">Name</label>
+        <br><br>
+
         <input type="text" class="form-control" name="name" placeholder="Name">
-      </div>
-     
       </div>
       <button type="submit" class="btn btn-success w-100 mt-3">Create a new category</button>
     </form>
   </div>
 </div>
+
+<script>
+  const newCategoryButton = document.getElementById('new-category');
+  const newCategoryForm = document.getElementById('new-category-form');
+  
+  newCategoryButton.addEventListener('click', function () {
+    newCategoryForm.style.display = newCategoryForm.style.display === 'none' ? 'block' : 'none';
+  });
+</script>
