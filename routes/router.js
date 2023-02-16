@@ -5,7 +5,7 @@ const router = express.Router();
 const  CategoryController  = require('../controllers/CategoryController');
 const  PostController  = require('../controllers/PostController');
 const  postMiddleware  = require('../middlewares/postmiddleware');
-const UsersController = require('../controllers/UsersController');
+const UsersController = require('../controllers/auth/UsersController');
 
 
 
@@ -18,15 +18,12 @@ router.get('/user/login',UsersController.login);
 //Posts routers
 router.get('/',PostController.getPosts);
 router.get('/post/:id',PostController.postShow);
-
 router.get('/newpost',CategoryController.getCategory2);
-
 router.post('/new',postMiddleware.validate,PostController.createPost);
 router.post('/delpost/:id',PostController.deletePost);
-
 router.get('/editpost/:id',PostController.editPost);
-
 router.post('/edit/:id',postMiddleware.validate,PostController.updatePost);
+
 
 //Category routers
 router.get('/admin/category',CategoryController.getCategory);
@@ -40,7 +37,6 @@ router.post('/admin/editedcategory/:id',CategoryController.updateCategory);
 
 
 module.exports = router;
-
 
 
 
