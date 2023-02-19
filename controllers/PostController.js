@@ -14,6 +14,7 @@ const postShow = async (req,res) => {
     return res.render('./admin/post', {posts:posts});
 };
 
+
 const createPost = async (req,res) => {
     const createdPost = await postModel.createPosts({
         title: req.body.title,

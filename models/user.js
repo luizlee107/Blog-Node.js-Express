@@ -16,15 +16,18 @@ const getemail = async () => {
 };
 
 
+const verifyemail = async () => {
+    const query = 'SELECT * FROM users WHERE email = ?';
+    const [email] = await connection.execute(query,[email]);
+    return email;
+};
+
 
 const createUser = async (user) => {
-    const { username } = user || null;
-    const { email } = user || null;
-    const { password } = user || null;
-
+    const { username,email,password,confirmPassword } = user;
     const created_at = new Date(Date.now()).toUTCString(); 
-    const query = 'INSERT INTO users(username,email,password,created_at) VALUES(?,?,?)';
-    const [createduser] = await connection.execute(query,[username,email,password,created_at]);
+    const query = 'INSERT INTO users(username,email,password,confirmPassword,created_at) VALUES(?,?,?,?,?)';
+    const [createduser] = await connection.execute(query,[username,email,password,confirmPassword,created_at]);
     return createduser;
 };
 
@@ -33,4 +36,6 @@ const createUser = async (user) => {
 module.exports = {
     createUser,
     getemail,
+    verifyemail,
+    getusers,
 };
