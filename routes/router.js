@@ -12,8 +12,9 @@ const  postMiddleware  = require('../middlewares/postmiddleware');
 
 
 //Users routers
+router.get('/login',UsersController.loginPage);
 router.get('/user/register',UsersController.newUser);
-router.post('/user/createuser',postMiddleware.validateUser,UsersController.createUser);
+router.post('/user/createuser',postMiddleware.validateUser,UsersController.register);
 
 
 
