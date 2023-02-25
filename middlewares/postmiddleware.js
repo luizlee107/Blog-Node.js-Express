@@ -1,5 +1,7 @@
 const bcrypt = require("bcryptjs");
-const connection = require('../models/connection');
+const jwt = require('jsonwebtoken');
+const { promisify } = require('util');
+const userModel = require('../models/user');
 
 
 
@@ -51,9 +53,36 @@ const validate = (req, res, next) => {
     next();
 };
 
+
+
+const isLoggedIn = async (req,res,next) => {
+    if (req.cookies.userSave) {
+        try {
+            const decoded = await promisify(jwt.verify)(req.cookies.userSave,
+                process.env.JWT_SECRET);
+            console.log(decoded);
+            const usersWithId = await userModel.findUserById(decoded.id);
+            console.log(usersWithId);
+            if (!usersWithId) {
+                return next();
+            }
+            req.user=usersWithId[0];
+            return next();
+            
+        } catch (err) {
+            console.log(err);
+            return next();
+        }
+    } else {
+        return next();
+    }
+};
+
+
 module.exports = {
     validate,
     validateUser,
+    isLoggedIn
 };
 
 

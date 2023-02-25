@@ -10,14 +10,22 @@ const  postMiddleware  = require('../middlewares/postmiddleware');
 
 
 
-
 //Users routers
+
 router.get('/login',UsersController.loginPage);
+router.post('/loginid',UsersController.login);
+router.get('/logout',UsersController.logout);
 router.get('/user/register',UsersController.newUser);
 router.post('/user/createuser',postMiddleware.validateUser,UsersController.register);
 
-
-
+//login In routers
+/*router.get('/admin/category',postMiddleware.isLoggedIn, (req,res) => {
+    if (req.user) {
+        res.render('../views/home');
+    } else {
+        res.render('../views/admin/category');
+    }
+});*/
 
 //Category routers
 router.get('/admin/category',CategoryController.getCategory);

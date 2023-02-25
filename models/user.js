@@ -9,8 +9,6 @@ const getusers = async () => {
 };
 
 
-
-
 const findUserByEmail = async (email) => {
     const query = 'SELECT * FROM users WHERE email = ?';
     const [rows,fields] = await connection.execute(query,[email]);
@@ -21,6 +19,12 @@ const findUserByUsername = async (username) => {
     const query = 'SELECT * FROM users WHERE username = ?';
     const [rows,fields] = await connection.execute(query,[username]);
     return rows;
+};
+
+const findUserById = async (id) => {
+    const query = 'SELECT * FROM users WHERE id = ?';
+    const [rows,fields] = await connection.execute(query,[id]);
+    return rows[0];
 };
 
 
@@ -40,5 +44,6 @@ const createUser = async (username,email,password) => {
 module.exports = {
     createUser,
     findUserByEmail,
-    findUserByUsername
+    findUserByUsername,
+    findUserById
 };

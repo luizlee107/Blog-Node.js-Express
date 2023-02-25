@@ -5,6 +5,9 @@ const router = require('../routes/router');
 const bodyParser = require('body-parser');
 const app = express();
 const cookie = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 
 
@@ -15,6 +18,16 @@ app.use(cookie());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(session({
+    secret:'secret',
+    resave:false,
+    saveUninitialized:false,
+    cookie: { secure: true}
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use(express.json());
