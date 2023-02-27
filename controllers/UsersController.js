@@ -1,10 +1,8 @@
 const userModel = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const passport = require('passport');
-const { findUserByUsername } = require('../models/user');
-const { findUserById } = require('../models/user');
-const LocalStrategy = require('passport-local').Strategy;
+
+
 
 
 
@@ -13,55 +11,26 @@ const loginPage = async (req,res) => {
     return res.render('./admin/user/login');
 };
 
-const postLogin = passport.authenticate('local',{
-    successRedirect:'/',
-    failureRedirect:'/login'
-});
 
-const logout = async (req,res) => {
-    req.logout();
-    res.redirect('/');
+const logout = async (req, res) => {
+    //console.log(req.cookies);
+    res.cookie('userSave', 'logout', {
+        expires: new Date(Date.now() + 2 * 1000),
+        httpOnly: true,
+    });
+    res.status(200).redirect('/');
+
 };
 
-//Passport Strategies
-passport.use(new LocalStrategy((username, password, done) => {
-    findUserByUsername(username, (err, user) => {
-        if (err) {
-            return done(err);
-        }
-        if (!user) {
-            return done(null, false, { message: 'Incorrect username.' });
-        }
-        bcrypt.compare(password, user.password, (err, res) => {
-            if (res) {
-                return done(null, user);
-            } else {
-                return done(null, false, { message: 'Incorrect password.' });
-            }
-        });
-    });
-}));
-  
-passport.serializeUser((user, done) => {
-    done(null, user.id);
-});
-  
-passport.deserializeUser((id, done) => {
-    findUserById(id, (err, user) => {
-        done(err, user);
-    });
-});
 
-
-
-/*const login = async (req,res) => {
+const login = async (req,res) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
             return res.status(400).json({message: 'Please provide an email and password'});
         }
         const usersWithEmail= await userModel.findUserByEmail(email);
-        console.log(usersWithEmail)
+        console.log(usersWithEmail);
         if (!usersWithEmail || !await bcrypt.compare(password,usersWithEmail[0].password)) {
             return res.json({message:'Email or password incorrect'});            
 
@@ -85,7 +54,7 @@ passport.deserializeUser((id, done) => {
     }
 
 };
-*/
+
 
 
 const newUser = async (req,res) => {
@@ -125,8 +94,9 @@ module.exports = {
     register,
     loginPage,
     newUser,
+    logout,
     login,
-    logout
+
 
 
 };

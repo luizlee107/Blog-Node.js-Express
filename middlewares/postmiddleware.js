@@ -5,6 +5,7 @@ const userModel = require('../models/user');
 
 
 
+
 const validateUser = (req, res, next) => {
     const requiredFields = ['username', 'email', 'password','confirmPassword'];
     const { password,confirmPassword } = req.body;
@@ -53,30 +54,29 @@ const validate = (req, res, next) => {
     next();
 };
 
-
-
-const isLoggedIn = async (req,res,next) => {
+const isLoggedIn = async (req, res, next) => {
     if (req.cookies.userSave) {
         try {
-            const decoded = await promisify(jwt.verify)(req.cookies.userSave,
-                process.env.JWT_SECRET);
-            console.log(decoded);
-            const usersWithId = await userModel.findUserById(decoded.id);
-            console.log(usersWithId);
-            if (!usersWithId) {
+            
+            const decode = await promisify(jwt.verify)(
+                req.cookies.userSave,
+                process.env.JWT_SECRET
+            );
+            const user = await userModel.findUserById(decode.id);
+            if (!user) {
                 return next();
             }
-            req.user=usersWithId[0];
+            req.user = user;
             return next();
-            
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            console.log(error);
             return next();
         }
     } else {
-        return next();
+        next();
     }
 };
+
 
 
 module.exports = {
