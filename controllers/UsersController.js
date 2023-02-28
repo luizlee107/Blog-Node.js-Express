@@ -4,9 +4,6 @@ const jwt = require('jsonwebtoken');
 
 
 
-
-
-
 const loginPage = async (req,res) => {
     return res.render('./admin/user/login');
 };
@@ -55,6 +52,15 @@ const login = async (req,res) => {
 
 };
 
+const updateUser = async (req,res) => {
+    const { id } = req.params.id;
+    await userModel.updateUser({
+        id: req.body.id,
+        name: req.body.name,
+
+    });
+    return res.redirect('/profile');
+};
 
 
 const newUser = async (req,res) => {
@@ -63,7 +69,7 @@ const newUser = async (req,res) => {
 
 
 const register = async function register(req,res) {
-    const { username,email,password } = req.body;
+    const { name,email,password } = req.body;
 
     try {
         const usersWithEmail = await userModel.findUserByEmail(email);
@@ -72,15 +78,9 @@ const register = async function register(req,res) {
             return;
         };
 
-        const usersWithUsername = await userModel.findUserByUsername(username);
-        if (usersWithUsername.length>0) {
-            res.status(400).json({ message: `The username "${username}" is already in use` });
-            return;
-        };
-
-        await userModel.createUser(username,email,password);
+        await userModel.createUser(name,email,password);
         //res.json({ message: 'User registered' });
-        res.status(200).redirect('/');
+        res.status(200).redirect('/login');
 
     
     } catch (error) {
@@ -96,6 +96,7 @@ module.exports = {
     newUser,
     logout,
     login,
+    updateUser
 
 
 

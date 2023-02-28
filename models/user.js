@@ -15,11 +15,11 @@ const findUserByEmail = async (email) => {
     return rows;
 };
 
-const findUserByUsername = async (username) => {
+/*const findUserByUsername = async (name) => {
     const query = 'SELECT * FROM users WHERE username = ?';
-    const [rows,fields] = await connection.execute(query,[username]);
+    const [rows,fields] = await connection.execute(query,[name]);
     return rows;
-};
+};*/
 
 const findUserById = async (id) => {
     const query = 'SELECT * FROM users WHERE id = ?';
@@ -28,15 +28,23 @@ const findUserById = async (id) => {
 };
 
 
-const createUser = async (username,email,password) => {
-   
+const createUser = async (name,email,password) => {
     const hashedPassword = await bcrypt.hash(password,8);
     const created_at = new Date(Date.now()).toUTCString(); 
-    const query = 'INSERT INTO users(username,email,password,created_at) VALUES(?,?,?,?)';
-    const [result] = await connection.execute(query,[username,email,hashedPassword,created_at]);
+    const query = 'INSERT INTO users(name,email,password,created_at) VALUES(?,?,?,?)';
+    const [result] = await connection.execute(query,[name,email,hashedPassword,created_at]);
     return result;
 };
 
+
+const updateUser = async (user) => {
+    const { id } = user;
+    const { name } = user; 
+    const query = 'UPDATE users SET name=? WHERE id=?';
+    const [updatedUser] = await connection.execute(query,[name,id]);
+    return updatedUser;
+
+};
 
 
 
@@ -44,6 +52,7 @@ const createUser = async (username,email,password) => {
 module.exports = {
     createUser,
     findUserByEmail,
-    findUserByUsername,
-    findUserById
+//    findUserByUsername,
+    findUserById,
+    updateUser
 };
